@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using classlibrary;
 
@@ -14,6 +15,8 @@ namespace Les5Oefening2
             {
                 Console.WriteLine($"{player.Id} {player.LastName} {player.DateOfBirth}");
             }
+           //IQueryable<Player> test = Players.GetPlayers() as IQueryable<Player>;
+            //test.Include(p => p.Fines.FirstOrDefault());
             //2
             Console.WriteLine("\n Oefening 2");
             foreach (var player in Players.GetPlayers().Where(n => n.DateOfBirth.Year > 1969).OrderByDescending(n => n.DateOfBirth))
