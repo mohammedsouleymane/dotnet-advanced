@@ -1,0 +1,54 @@
+﻿
+
+@model IEnumerable<MyGameStore.DAL.Person>
+
+@{
+	ViewData["Title"] = "Index";
+}
+<h1>Get</h1>
+
+<p>
+	<a asp-action="Create" asp-controller="People" >Create New</a>
+</p>
+<table class="table table-bordered" class="table table-hover">
+	<thead class="thead-dark">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Id)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.LastName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.StoreId)
+		</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FirstName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.LastName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.StoreId)
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "Update", new { id=item.Id  }) |
+				@Html.ActionLink("Details", "GetById", new {  id=item.Id }) |
+				@Html.ActionLink("Delete", "Delete", new { id=item.Id })
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>

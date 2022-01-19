@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MyGameStore.DAL.Store>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Addition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+	        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.Id)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Name)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Street)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Number)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Addition)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.ZipCode)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.City)
+		</td>
+		<td>
+			@Html.ActionLink("Edit", "Update", new { id = item.Id }) |
+			@Html.ActionLink("Details", "GetById", new { id = item.Id }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+		</td>
+	</tr>
+}
+    </tbody>
+</table>
