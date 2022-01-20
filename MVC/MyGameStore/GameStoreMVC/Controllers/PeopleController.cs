@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using MyGameStore.BLL.Interfaces;
 using MyGameStore.DAL;
@@ -19,13 +20,24 @@ namespace GameStoreMVC.Controllers
         }
         public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            try
+            {
+                _service.Delete(id);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+            
             return RedirectToAction("Index");
         }
 
         public IActionResult GetById(int id)
         {
-            return View(_service.GetbyId(id));
+            Person person = _service.GetbyId(id);
+            if (person == null)
+                return NotFound("Person not found");
+            return View(person);
         }
 
         public IActionResult Create()
@@ -36,13 +48,24 @@ namespace GameStoreMVC.Controllers
         [HttpPost]
         public IActionResult Create(Person person)
         {
-            _service.Add(person);
+            try
+            {
+                _service.Add(person);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+            
             return RedirectToAction("GetById",person);
         }
 
         public IActionResult Update(int id)
         {
-            return View(_service.GetAll().First(x => x.Id == id));
+            Person person = _service.GetbyId(id);
+            if(person == null)
+                return NotFound("Person not found");
+            return View(person);
         }
 
         [HttpPost]

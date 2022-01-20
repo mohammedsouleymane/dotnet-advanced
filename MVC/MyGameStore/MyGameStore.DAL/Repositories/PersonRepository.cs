@@ -18,8 +18,7 @@ namespace MyGameStore.DAL.Repositories
 
         public void Delete(int id)
         {
-            Person person = new() { Id = id };
-            _gameContext.Remove(person);
+            _gameContext.Remove(GetById(id));
         }
 
         public IEnumerable<Person> GetAll()
