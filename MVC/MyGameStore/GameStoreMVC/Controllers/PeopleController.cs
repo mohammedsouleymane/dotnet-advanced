@@ -36,8 +36,6 @@ namespace GameStoreMVC.Controllers
         [HttpPost]
         public IActionResult Create(Person person)
         {
-            if (!_service.GetAll().Select(x => x.Id).Contains((int)person.StoreId))
-                return NotFound("Store id doesn't exist");
             _service.Add(person);
             return RedirectToAction("GetById",person);
         }
